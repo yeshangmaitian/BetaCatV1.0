@@ -924,6 +924,7 @@ def startGame(Red, Blue, n, filename, detail):
     # if detail:
     #     waitForPlayerToPressKey()
     return RESULT[0]
+
 if __name__ == '__main__':
     '''
     可选测试对象
