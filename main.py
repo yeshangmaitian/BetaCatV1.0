@@ -5,7 +5,9 @@ import random
 import copy
 from pygame.locals import *
 from sys import exit
-from time import ctime, sleep
+from time import ctime, sleep, time
+from random import randrange
+
 WINDOWSIZE = (800, 680)  # 游戏窗口大小
 LINECOLOR = (0, 0, 0)  # 棋盘线的颜色
 TEXTCOLOR = (0, 0, 0)  # 标题文本颜色
@@ -895,7 +897,7 @@ def playGame(Red, Blue, detail):
         if result:
             lastInfo = []
             return result
-def startGame(Red, Blue, n, filename, detail=True):
+def startGame(Red, Blue, n, filename, detail):
     global COUNT
     init()
     if detail:
@@ -909,7 +911,8 @@ def startGame(Red, Blue, n, filename, detail=True):
         result = playGame(Red, Blue, detail)  # 游戏开始，返回比赛结果
         if detail:
             pass
-            #drawWinScreen(result)
+            # drawWinScreen(result)
+            # time.sleep(5)
         RESULT[result-1] += 1                       # 更新比分
         cnt -= 1
         COUNT = 2000 - cnt - 1                      # 先手方交替
@@ -917,7 +920,7 @@ def startGame(Red, Blue, n, filename, detail=True):
         if cnt % 5 == 0:
             # pass
             print(sum(RESULT),'\t',round(100*RESULT[0]/sum(RESULT),4))
-            #print(myGuess.cPM)
+            # print(myGuess.cPM)
     # if detail:
     #     waitForPlayerToPressKey()
     return RESULT[0]
@@ -928,8 +931,8 @@ if __name__ == '__main__':
     Blue ：GoAhead | Human | Demo | Demo2 | '
     Human表示棋手为人类.
     '''
-    Red = 'BetaCat1.0'
-    Blue = 'Demo'
+    Red = 'GoAhead'
+    Blue = 'Demo2'
     filename = os.getcwd() + "/data/" + Red + 'Vs' + Blue
     cnt = 1000
     result = startGame(Red, Blue, cnt, filename, detail=True)
